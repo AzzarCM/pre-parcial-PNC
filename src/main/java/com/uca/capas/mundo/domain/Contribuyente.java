@@ -33,10 +33,7 @@ public class Contribuyente {
 	@ManyToOne(fetch= FetchType.LAZY)
 	@JoinColumn(name="c_importancia")
 	private Importancia importancia;
-	
-	@Transient
-	private Integer id_importancia;
-	
+
 	@Size(message = "El campo no debe contener mas de 30 caracteres", max = 30)
 	@NotEmpty(message = "Este campo no puede estar vacio")
 	@Column(name="s_nombre")
@@ -73,12 +70,6 @@ public class Contribuyente {
 	}
 	public void setId_contribuyente(Integer id_contribuyente) {
 		this.id_contribuyente = id_contribuyente;
-	}
-	public Integer getId_importancia() {
-		return id_importancia;
-	}
-	public void setId_importancia(Integer id_importancia) {
-		this.id_importancia = id_importancia;
 	}
 	public String getNombre() {
 		return nombre;
