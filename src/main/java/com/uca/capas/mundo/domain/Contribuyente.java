@@ -1,6 +1,10 @@
 package com.uca.capas.mundo.domain;
 
-import java.sql.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 
 @Entity
 @Table(schema="public", name="contribuyente")
@@ -29,18 +37,25 @@ public class Contribuyente {
 	@Transient
 	private Integer id_importancia;
 	
+	@Size(message = "El campo no debe contener mas de 30 caracteres", max = 30)
+	@NotEmpty(message = "Este campo no puede estar vacio")
 	@Column(name="s_nombre")
 	private String nombre;
-	
+
+	@Size(message = "El campo no debe contener mas de 30 caracteres", max = 30)
+	@NotEmpty(message = "Este campo no puede estar vacio")
 	@Column(name="s_apellido")
 	private String apellido;
-	
+
+	@Size(message = "El campo no debe contener mas de 30 caracteres", max = 14)
+	@NotEmpty(message = "Este campo no puede estar vacio")
 	@Column(name="s_nit")
 	private String nit;
-	
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Column(name="f_fecha_ingreso")
 	private Date fIngreso;
-	
+
 	
 	public Contribuyente() {}
 	
@@ -83,8 +98,14 @@ public class Contribuyente {
 	public void setNit(String nit) {
 		this.nit = nit;
 	}
-	public Date getfIngreso() {
-		return fIngreso;
+
+	public String getfIngreso(){
+
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		String strFecha = formato.format(fIngreso);
+
+		return strFecha;
+
 	}
 	public void setfIngreso(Date fIngreso) {
 		this.fIngreso = fIngreso;
