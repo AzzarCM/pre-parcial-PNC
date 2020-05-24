@@ -54,11 +54,10 @@ public class MainController {
 			contribuyente.setfIngreso(date);
 			try {
 				contService.insertarContribuyente(contribuyente);
+				mav.setViewName("mensaje");
 			}catch (Exception e){
 				e.printStackTrace();
 			}
-			mav.addObject("contribuyente", new Contribuyente());
-			mav.setViewName("mensaje");
 		}
 		return mav;
 	}
