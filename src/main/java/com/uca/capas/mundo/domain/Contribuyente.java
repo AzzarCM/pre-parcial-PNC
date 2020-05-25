@@ -15,9 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 
@@ -44,7 +42,7 @@ public class Contribuyente {
 	@Column(name="s_apellido")
 	private String apellido;
 
-	@Size(message = "El campo no debe contener mas de 30 caracteres", max = 14)
+	@Size(message = "El campo no debe contener mas de 14 caracteres", max = 14)
 	@NotEmpty(message = "Este campo no puede estar vacio")
 	@Column(name="s_nit")
 	private String nit;

@@ -47,7 +47,10 @@ public class MainController {
 	@PostMapping("/insertar")
 	public ModelAndView save(@Valid @ModelAttribute Contribuyente contribuyente, BindingResult result){
 		ModelAndView mav = new ModelAndView();
+		List<Importancia> importancia = null;
 		if(result.hasErrors()){
+			importancia = impService.allImportancias();
+			mav.addObject("importancias",importancia);
 			mav.setViewName("index");
 		}else{
 			Date date = new Date();
